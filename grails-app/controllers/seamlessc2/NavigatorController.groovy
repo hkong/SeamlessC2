@@ -24,11 +24,9 @@ class NavigatorController
 //            Map user = (Map) jsonResult.get( "data" );
 //            String name = (String) user.get( "name" );
 
-            println "result=${result.data[1].name}"
-
             def dashboard = [:]
             result.data.each  {
-                println "${it.stack?'stacked-dashboard':'dashboard'}:  ${it.name} -> #${it.guid}"
+//                println "${it.stack?'stacked-dashboard':'dashboard'}:  ${it.name} -> #${it.guid}"
                 dashboard.name = it.name
                 dashboard.type = ( ( it.stack )? 'stacked-dashboard' : 'dashboard' )
                 dashboard.stack = it.stack?.name
@@ -36,8 +34,8 @@ class NavigatorController
                 dashboard.url = "https://localhost:8443/owf/#${it.guid}"
                 dashboards += dashboard.clone()
             }
-            println dashboardsJson
-            println dashboards
+//            println dashboardsJson
+//            println dashboards
             [dashboardsJson:dashboardsJson,dashboards:dashboards]
         }
         finally

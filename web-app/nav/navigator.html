@@ -1,0 +1,49 @@
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+    <script language = "javascript">
+        var dashboardJson = ""
+        $(document).ready(function()
+        {
+            $.ajax({
+                type: "GET",
+//                url: "http://localhost:8081/SeamlessC2/test-files/owf/dashboards.json",
+                url: "https://localhost:8443/owf/dashboard",
+                cache: false,
+                dataType: 'json',
+                success: function ( json )
+                {
+                    dashboardJson = json
+                    var base = document.location.protocol + "//" + document.location.host + "/owf/#guid="
+                    var listing = "<ul>";
+                    $.each( json.data, function(index, element )
+                    {
+                        listing += "<li>"
+                                + "<a href='" +  base + json.data[index].guid + "'> "
+                                    + json.data[index].name + "</a>"
+                                + "</li>";
+                    });
+                    $('#results').append( listing )
+                },
+                error: function ( data, status )
+                {
+                        $('#results')
+                                .append("<p>")
+                                .append( status)
+                                .append("</p>");
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+<h1>Navigator</h1>
+
+<h2>Available Dashboards</h2>
+
+<div id="results"/>
+
+</body>

@@ -13,9 +13,9 @@
 %{--<p>dashboards:  ${dashboards}</p>--}%
 %{--<p>params:  ${params}</p>--}%
 <%
-    println dashboards[0]
+    println dashboards
 %>
-<h2>Available Dashboards</h2>
+<h2>Available Dashboards using Grails Controller to access URL (File)</h2>
 <ul>
 <g:each in="${dashboards}" var="dashboard">
     <li><a href="${dashboard.url}">${dashboard.stack?dashboard.stack+'/':''}${dashboard.name}</a></li>
